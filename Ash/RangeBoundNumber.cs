@@ -7,8 +7,9 @@ using System.Threading.Tasks;
 namespace Ash
 { 
     // Known Issues: 
-    // 1. Circular ranges with quanta > 1 do not recoil properly
-    // 2. No overloads for +, -, *, /, % yet.
+    // 1. Circular ranges with quanta > 1 do not recoil properly : Fixed Nov 6th 2015
+    // 2. No overloads for +, -, *, /, % yet. : Fixed Nov 7th 2015
+    // 3. Implement increment/decrement thresholding.
     public class RangeBoundNumber<T>
     {
         private T _data;
@@ -58,7 +59,7 @@ namespace Ash
         {
             if (!AllowedTypes.Contains((typeof(T)))) throw new ArgumentException("Type not supported.");
             if ((dynamic)lbound > (dynamic)ubound) throw new ArgumentException("Range is invalid.");
-            if ((dynamic)step < 0) throw new ArgumentException("Quanta is invalid");
+            if ((dynamic)step < 0) throw new NotImplementedException();
 
             _lbound = lbound;
             _ubound = ubound;
